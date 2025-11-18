@@ -5,9 +5,10 @@ import { Popover, PopoverContent, PopoverTrigger } from "../components/ui/popove
 import { Label } from "../components/ui/label"
 
 type Props = {
+  id: RoverInfo['id']
   onCommand: (command: string) => void
 }
-const RoverCommand = ({ onCommand, children }: PropsWithChildren<Props>) => {
+const RoverCommand = ({ id, onCommand, children }: PropsWithChildren<Props>) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
@@ -26,7 +27,7 @@ const RoverCommand = ({ onCommand, children }: PropsWithChildren<Props>) => {
         <div className="space-y-2">
           <h4 className="leading-none font-medium">Rover</h4>
           <p className="text-muted-foreground text-sm">
-            Command to move rover.
+            Command to move rover ({id}).
           </p>
         </div>
         <div className="grid grid-cols-4 items-center gap-4">
@@ -38,7 +39,7 @@ const RoverCommand = ({ onCommand, children }: PropsWithChildren<Props>) => {
             className="col-span-3 h-8"
           />
         </div>
-        <Button variant="default" className="text-inherit">Submit</Button>
+        <Button variant="default">Submit</Button>
       </form>
     </PopoverContent>
   </Popover>

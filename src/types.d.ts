@@ -3,10 +3,11 @@ type Coords = {
   y: number,
 }
 
-type Rover = {
+type RoverInfo = {
   id: string,
   fleet: string,
   direction: 'N' | 'E' | 'S' | 'W',
+  status: 'active' | 'inactive',
   colour?: string,
 } & Coords
 
@@ -16,12 +17,12 @@ type State = {
   | { status: 'idle' }
   | { status: 'loading' }
   | { status: 'error', error: unknown }
-  | { data: Rover, status: 'success' },
+  | { data: RoverInfo, status: 'success' },
   rovers:
   | { status: 'idle' }
   | { status: 'loading' }
   | { status: 'error', error: unknown }
-  | { data: Record<string, Rover>, error: null, status: 'success' },
+  | { data: Record<string, RoverInfo>, error: null, status: 'success' },
 }
 
 type Action =
