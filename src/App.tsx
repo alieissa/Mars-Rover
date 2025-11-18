@@ -1,22 +1,21 @@
+import { useReducer } from 'react'
 import './App.css'
-import Rovers from './Rovers'
+import Grid from './Grid'
+import Rovers from './Rovers/Rovers'
+import AppContext from './app.context'
+import appReducer, { initialState } from './app.reducer'
+
 
 function App() {
+  const [state, dispatch] = useReducer<any, any>(appReducer, initialState)
+
   return (
-    <div className='flex gap-4'>
-      <div className='flex flex-col gap-0.5'>
-        {
-          [...Array(20)].map((_, index) => {
-            return <div key={`y-${index}`} className="flex gap-0.5">
-              {[...Array(20)].map((_, index) => {
-                return <div key={`x-${index}`} className='bg-amber-200 flex gap-1 w-5 h-5' />
-              })}
-            </div>
-          })
-        }
+    <AppContext.Provider value={{ dispatch, state }}>
+      <div className='flex gap-4'>
+        <Grid />
+        <Rovers />
       </div>
-      <Rovers />
-    </div>
+    </AppContext.Provider>
   )
 }
 

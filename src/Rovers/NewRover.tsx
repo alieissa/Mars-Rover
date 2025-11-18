@@ -1,11 +1,11 @@
 import type { FormEvent } from "react"
-import { Button } from "./components/ui/button"
-import { Input } from "./components/ui/input"
-import { Popover, PopoverContent, PopoverTrigger } from "./components/ui/popover"
-import { Label } from "./components/ui/label"
+import { Button } from "../components/ui/button"
+import { Input } from "../components/ui/input"
+import { Popover, PopoverContent, PopoverTrigger } from "../components/ui/popover"
+import { Label } from "../components/ui/label"
 
 type Props = {
-  onCreate: (x: number, y: number) => void
+  onCreate: (coords: Coords) => void
 }
 const NewRover = ({ onCreate }: Props) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -15,12 +15,12 @@ const NewRover = ({ onCreate }: Props) => {
     const x = Number(formData.get('x'))
     const y = Number(formData.get('y'))
 
-    onCreate(x, y)
+    onCreate({ x, y })
   }
 
   return <Popover>
     <PopoverTrigger asChild className="mb-4">
-      <Button variant="outline">New Rover</Button>
+      <Button variant="default" >New Rover</Button>
     </PopoverTrigger>
     <PopoverContent side="bottom" align="end" className="w-80">
       <form className="grid gap-4" onSubmit={handleSubmit}>
@@ -52,7 +52,7 @@ const NewRover = ({ onCreate }: Props) => {
             />
           </div>
         </div>
-        <Button variant="default" className="text-inherit">Create</Button>
+        <Button variant="default" >Create</Button>
       </form>
     </PopoverContent>
   </Popover>
